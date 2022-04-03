@@ -19,11 +19,12 @@ class CreateHasilTangkapanTable extends Migration
             $table->string('nama_ikan');
             $table->foreignId('id_jenis_ikan')->nullable();
             $table->integer('jumlah');
-            $table->bigInteger('harga');
-            $table->string('gambar');
+            $table->float('harga');
+            $table->string('gambar')->nullable();
             $table->foreignId('id_jasa_pengerjaan_ikan')->nullable();
             $table->timestamps();
         });
+
         Schema::table('hasil_tangkapan', function($table) {
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_jenis_ikan')->references('id')->on('jenis_ikan')->onDelete('cascade');

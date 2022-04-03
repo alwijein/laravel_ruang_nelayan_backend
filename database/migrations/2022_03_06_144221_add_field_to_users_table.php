@@ -17,6 +17,7 @@ class AddFieldToUsersTable extends Migration
             $table->string('nik_ktp')->after('no_hp')->unique();
             $table->string('avatar')->after('no_hp')->nullable();
             $table->string('alamat')->after('no_hp')->nullable();
+            $table->enum('role', array('admin','nelayan', 'costumer'))->after('no_hp');
         });
     }
 

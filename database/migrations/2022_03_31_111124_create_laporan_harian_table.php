@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJasaPengerjaanIkanTable extends Migration
+class CreateLaporanHarianTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateJasaPengerjaanIkanTable extends Migration
      */
     public function up()
     {
-        Schema::create('jasa_pengerjaan_ikan', function (Blueprint $table) {
+        Schema::create('laporan_harian', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_pengerjaan_ikan');
-            $table->float('biaya');
+            $table->foreignId('id_users')->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('laporan_harian', function($table) {
+            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,6 +31,6 @@ class CreateJasaPengerjaanIkanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jasa_pengerjaan_ikan');
+        Schema::dropIfExists('laporan_harian');
     }
 }

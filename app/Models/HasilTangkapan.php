@@ -18,6 +18,7 @@ class HasilTangkapan extends Model
         'nama_ikan',
         'jumlah',
         'harga',
+        'gambar',
         'total',
     ];
 
@@ -30,12 +31,12 @@ class HasilTangkapan extends Model
         return $this->belongsTo(JenisIkan::class, 'id_jenis_ikan');
     }
 
-    public function rincian(){
-        return $this->hasMany(Rincian::class);
-    }
-
     public function jasaPengerjaanIkan(){
         return $this->belongsTo(JasaPengerjaanIkan::class, 'id_jasa_pengerjaan_ikan');
+    }
+
+    public function laporanHarian(){
+        return $this->hasMany(LaporanHarian::class);
     }
 
 }

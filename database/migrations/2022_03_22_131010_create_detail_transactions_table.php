@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRincianTable extends Migration
+class CreateDetailTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,21 @@ class CreateRincianTable extends Migration
      */
     public function up()
     {
-        Schema::create('rincian', function (Blueprint $table) {
+        Schema::create('detail_transactions', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('id_users')->nullable();
             $table->foreignId('id_hasil_tangkapan')->nullable();
-            $table->foreignId('id_jasa_pengerjaan_ikan')->nullable();
+            $table->foreignId('id_transactions')->nullable();
+
+            $table->bigInteger('quantity');
             $table->timestamps();
         });
 
-        Schema::table('rincian', function($table) {
+        Schema::table('detail_transactions', function($table) {
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_hasil_tangkapan')->references('id')->on('hasil_tangkapan')->onDelete('cascade');
-            $table->foreign('id_jasa_pengerjaan_ikan')->references('id')->on('jasa_pengerjaan_ikan')->onDelete('cascade');
+            $table->foreign('id_transactions')->references('id')->on('transactions')->onDelete('cascade');
         });
     }
 
@@ -35,6 +38,6 @@ class CreateRincianTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rincian');
+        Schema::dropIfExists('detail_transactions');
     }
 }

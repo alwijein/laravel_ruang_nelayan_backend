@@ -23,6 +23,7 @@ class User extends Authenticatable
         'nik_ktp',
         'avatar',
         'alamat',
+        'role',
         'password',
     ];
 
@@ -49,6 +50,10 @@ class User extends Authenticatable
 
     public function hasilTangkapan(){
         return $this->hasMany(HasilTangkapan::class);
+    }
+
+    public function laporanHarian(){
+        return $this->hasMany(LaporanHarian::class);
     }
 
 }

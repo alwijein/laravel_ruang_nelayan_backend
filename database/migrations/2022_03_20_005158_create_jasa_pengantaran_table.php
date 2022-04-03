@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMetodePembayaranTable extends Migration
+class CreateJasaPengantaranTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateMetodePembayaranTable extends Migration
      */
     public function up()
     {
-        Schema::create('metode_pembayaran', function (Blueprint $table) {
+        Schema::create('jasa_pengantaran', function (Blueprint $table) {
             $table->id();
-            $table->string('metode_pembayaran');
-            $table->string('status');
+            $table->string('img')->nullable();
+            $table->string('name');
+            $table->float('biaya');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateMetodePembayaranTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('metode_pembayaran');
+        Schema::dropIfExists('jasa_pengantaran');
     }
 }

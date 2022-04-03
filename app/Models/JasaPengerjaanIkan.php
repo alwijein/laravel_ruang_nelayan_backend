@@ -13,6 +13,7 @@ class JasaPengerjaanIkan extends Model
 
     protected $fillable = [
         'jenis_pengerjaan_ikan',
+        'biaya',
     ];
 
 

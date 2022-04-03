@@ -22,6 +22,7 @@ class UserController extends Controller
                   'name' => ['required'],
                   'no_hp' => ['required', 'min:11', 'unique:users'],
                   'nik_ktp' => ['required', 'unique:users'],
+                  'role' => ['required'],
                   'password' => ['required'],
               ],
           );
@@ -30,6 +31,7 @@ class UserController extends Controller
               'name' => $request->name,
               'no_hp' => $request->no_hp,
               'nik_ktp' => $request->nik_ktp,
+              'role' => $request->role,
               'password' => Hash::make($request->password),
           ]);
 
@@ -116,5 +118,32 @@ class UserController extends Controller
         $token = $request->user()->currentAccessToken()->delete();
 
         return ResponseFormatter::success($token, 'Token Revoked');
+    }
+
+    public function getAll(Request $request){
+        $id = $request->input('id');
+        $role = $request->input('role');
+        $limit = $request->input('limit');
+
+        if($id){
+            $user = User::find($id)->first();
+            if($user){
+                return ResponseFormatter::success($user, 'Data User Berhasil Diambil');
+            }else{
+                return ResponseFormatter::error(null, 'Data User Tidak Ada', 404);
+            }
+        }
+
+        if ($role){
+            $user = User::where('role', $role)->get();
+        }
+
+        return ResponseFormatter::success(
+            $user,
+            'Data berhasil diambil'
+        );
+
+
+
     }
 }
