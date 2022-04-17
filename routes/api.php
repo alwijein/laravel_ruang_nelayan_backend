@@ -38,6 +38,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('logout', [UserController::class, 'logout']);
     Route::get('hasil-tangkapan',[HasilTangkapanController::class, 'all']);
     Route::post('hasil-tangkapan/tambah-ikan',[HasilTangkapanController::class, 'tambahIkan']);
+    Route::post('hasil-tangkapan/update-ikan',[HasilTangkapanController::class, 'updateIkan']);
     Route::get('jenis-ikan',[JenisIkanController::class, 'getAll']);
     Route::get('jenis-pengerjaan-ikan',[JenisPengerjaanIkanController::class, 'getAll']);
     Route::post('ikan-air-tawar/tambah', [IkanAirTawarController::class, 'create']);

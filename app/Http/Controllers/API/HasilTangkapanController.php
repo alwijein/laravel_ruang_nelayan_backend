@@ -32,7 +32,7 @@ class HasilTangkapanController extends Controller
             }
         }
 
-        $hasilTangkapan = HasilTangkapan::with(['users', 'jenisIkan', 'jasaPengerjaanIkan']);
+        $hasilTangkapan = HasilTangkapan::with(['users', 'jenisIkan', 'jasaPengerjaanIkan'])->where('jumlah', '!=' , 0);
 
         if ($id_users){
             $hasilTangkapan->where('id_users', $id_users);
@@ -76,6 +76,37 @@ class HasilTangkapanController extends Controller
         ]);
 
         return ResponseFormatter::success(['data' => $hasilTangkapan], 'Data hasil tangkapan berhasil diambil');
+        } catch (\Exception $error) {
+            return ResponseFormatter::error(['message' => 'something went wrong' , 'error' => $error], "Data gagal ditambahkan", '500');
+        }
+    }
+
+    public function updateIkan(Request $request){
+        try {
+            $id = $request->input('id');
+
+            $request->validate([
+                'id_users' => ['required'],
+                'nama_ikan' => ['required', 'string'],
+                'id_jenis_ikan' => ['required'],
+                'jumlah' => ['required'],
+                'harga' => ['required'],
+                'gambar' => ['required'],
+                'id_jasa_pengerjaan_ikan' => ['required'],
+            ]);
+
+
+        $hasilTangkapan = HasilTangkapan::where('id', $id)->update([
+            'id_users' => $request->id_users,
+            'nama_ikan' => $request->nama_ikan,
+            'id_jenis_ikan' => $request->id_jenis_ikan,
+            'jumlah' => $request->jumlah,
+            'harga' => $request->harga,
+            'gambar' => $request->gambar,
+            'id_jasa_pengerjaan_ikan' => $request->id_jasa_pengerjaan_ikan,
+        ]);
+
+        return ResponseFormatter::success($hasilTangkapan, 'Data berhasil di update');
         } catch (\Exception $error) {
             return ResponseFormatter::error(['message' => 'something went wrong' , 'error' => $error], "Data gagal ditambahkan", '500');
         }

@@ -16,6 +16,8 @@ class TransactionController extends Controller
         $id = $request->input('id');
         $limit = $request->input('limit');
         $status = $request->input('status');
+        $created_at = $request->input('created_at');
+
 
         if($id){
 
@@ -34,6 +36,10 @@ class TransactionController extends Controller
             $transaction->where('status', $status);
         }
 
+        if($created_at){
+            $transaction->whereDate('created_at', $created_at);
+        }
+
         return ResponseFormatter::success($transaction->paginate($limit), 'Data list transaksi berhasil diambil');
 
     }
@@ -47,6 +53,8 @@ class TransactionController extends Controller
             'ongkos_kirim' => ['required'],
             'total_jasa' => ['required'],
             'status' => ['required'],
+            'id_jasa_pengantaran' => ['required'],
+            'pembayaran' => ['required'],
         ]);
 
 
@@ -58,6 +66,8 @@ class TransactionController extends Controller
             'ongkos_kirim' => $request->ongkos_kirim,
             'total_jasa' => $request->total_jasa,
             'status' => $request->status,
+            'id_jasa_pengantaran' => $request->id_jasa_pengantaran,
+            'pembayaran' => $request->pembayaran,
         ]);
 
         foreach($request->items as $hasilTangkapan){
