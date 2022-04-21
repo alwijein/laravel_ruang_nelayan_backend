@@ -13,7 +13,7 @@ class JasaPengantaran extends Model
 
     protected $fillable = [
         'img',
-        'nama',
+        'name',
         'biaya',
     ];
 }

@@ -175,7 +175,7 @@ $avatar = substr(Auth::user()->name, 0, 2);
 
 
                 {{-- Kurir Management Begin --}}
-                <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Kurir Management</span><i
+                <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Pegawai Management</span><i
                         data-feather="more-horizontal"></i>
                 </li>
 
@@ -183,10 +183,45 @@ $avatar = substr(Auth::user()->name, 0, 2);
                             data-feather="user"></i><span class="menu-title text-truncate"
                             data-i18n="User">Kurir</span></a>
                     <ul class="menu-content">
-                        <li class="{{ request()->is('show-kurir*') ? 'active' : '' }}"><a
+                        <li class="{{ request()->is('show-kurir/pengantaran*') ? 'active' : '' }}"><a
                                 class="d-flex align-items-center" href="{{ route('show-kurir') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="List">Daftar Kurir</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
+                            data-feather="user"></i><span class="menu-title text-truncate"
+                            data-i18n="User">Pengerjaan Ikan</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ request()->is('show-kurir/jasa-pengerjaan*') ? 'active' : '' }}"><a
+                                class="d-flex align-items-center" href="{{ route('show-jasa-pengerjaan') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="List">Daftar Pengerjaan Ikan</span></a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Kurir Management End --}}
+
+                {{-- Ikan Management Begin --}}
+                <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Ikan Management</span><i
+                        data-feather="more-horizontal"></i>
+                </li>
+
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
+                            data-feather="user"></i><span class="menu-title text-truncate"
+                            data-i18n="User">Jenis Ikan</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ request()->is('show-ikan/jenis*') ? 'active' : '' }}"><a
+                                class="d-flex align-items-center" href="{{ route('show-jenis-ikan') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="List">Daftar Jenis Ikan</span></a>
+                        </li>
+                        <li class="{{ request()->is('show-ikan/air-tawar*') ? 'active' : '' }}"><a
+                                class="d-flex align-items-center" href="{{ route('show-air-tawar') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="List">Daftar Ikan Air Tawar</span></a>
                         </li>
                     </ul>
                 </li>

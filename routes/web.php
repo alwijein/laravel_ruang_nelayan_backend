@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IkanController;
 use App\Http\Controllers\KurirController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +35,17 @@ Route::middleware(['auth'])->group(function(){
 
     Route::delete('/show-siswa/{id}', [UserController::class, 'destroy'])->name('delete');
 
-    Route::get('/show-kurir',[KurirController::class, 'showKurir'])->name('show-kurir');
+    Route::get('/show-kurir/pengantaran',[KurirController::class, 'showKurir'])->name('show-kurir');
+    Route::post('/show-kurir/pengantaran',[KurirController::class, 'store'])->name('show-kurir');
+
+    Route::get('/show-kurir/jasa-pengerjaan',[KurirController::class, 'showJasaPengerjaanIkan'])->name('show-jasa-pengerjaan');
+    Route::post('/show-kurir/jasa-pengerjaan',[KurirController::class, 'storeJasaPengerjaanIkan'])->name('show-jasa-pengerjaan');
+
+    Route::get('/show-ikan/jenis',[IkanController::class, 'showJenisIkan'])->name('show-jenis-ikan');
+    Route::post('/show-ikan/jenis',[IkanController::class, 'store'])->name('show-jenis-ikan');
+
+    Route::get('/show-ikan/air-tawar',[IkanController::class, 'showIkanAirTawar'])->name('show-air-tawar');
+    Route::post('/show-ikan/air-tawar',[IkanController::class, 'storeIkanAirTawar']);
 
 
 

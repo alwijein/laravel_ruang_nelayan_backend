@@ -6,12 +6,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Daftar Kurir</h4>
+                        <h4 class="card-title">Daftar Ikan Air Tawar</h4>
                         <div class="form-modal-ex">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#inlineForm">
-                                Tambah Kurir
+                                Tambah Ikan Air Tawar
                             </button>
                             <!-- Modal -->
                             <div class="modal fade text-start" id="inlineForm" tabindex="-1" aria-labelledby="myModalLabel33"
@@ -19,36 +19,36 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel33">Tambahkan Kurir</h4>
+                                            <h4 class="modal-title" id="myModalLabel33">Tambahkan Ikan Air Tawar</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <form action="{{ route('show-kurir') }}" method="POST">
+                                        <form action="{{ route('show-air-tawar') }}" method="POST">
                                             @csrf
                                             <div class="modal-body">
-                                                <label>Nama: </label>
+                                                <label>Nama Ikan: </label>
                                                 <div class="mb-1">
-                                                    <input type="text" name="name" placeholder="Masukkan Nama"
+                                                    <input type="text" name="title" placeholder="Masukkan Jenis Ikan"
                                                         class="form-control" />
                                                 </div>
-                                                @error('name')
+                                                @error('title')
                                                     <div class="text-danger mt-1">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
                                             </div>
-                                            <div class="modal-body">
-                                                <label>Biaya: </label>
+                                            {{-- <div class="modal-body">
+                                                <label>Keterangan: </label>
                                                 <div class="mb-1">
-                                                    <input type="text" name="biaya" placeholder="Masukkan Biaya"
+                                                    <input type="text" name="keterangan" placeholder="Masukkan Keterangan"
                                                         class="form-control" />
                                                 </div>
-                                                @error('biaya')
+                                                @error('keterangan')
                                                     <div class="text-danger mt-1">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
-                                            </div>
+                                            </div> --}}
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">Daftar</button>
                                             </div>
@@ -62,20 +62,16 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Nama</th>
-                                    <th>Biaya</th>
+                                    <th>Nama Ikan</th>
+                                    {{-- <th>Keterangan</th> --}}
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($kurir as $data)
+                                @foreach ($ikanAirTawar as $data)
                                     <tr>
-                                        <td>{{ $data->img }}</td>
-                                        <td>{{ $data->name }}</td>
-                                        <td><span
-                                                class="badge rounded-pill badge-light-primary me-1">{{ $data->biaya }}</span>
-                                        </td>
+                                        <td>{{ $data->title }}</td>
+                                        {{-- <td>{{ $data->keterangan }}</td> --}}
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn btn-sm dropdown-toggle hide-arrow"

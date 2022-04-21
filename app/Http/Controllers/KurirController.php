@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JasaPengantaran;
+use App\Models\JasaPengerjaanIkan;
 use Illuminate\Http\Request;
 
 class KurirController extends Controller
@@ -11,4 +12,38 @@ class KurirController extends Controller
         $kurir = JasaPengantaran::all();
         return view('kurir_management.show_kurir', compact('kurir'));
     }
+
+    public function store(Request $request){
+        $request->validate([
+            'name' => ['required'],
+            'biaya' => ['required']
+        ]);
+
+        JasaPengantaran::create([
+            'name' => $request->name,
+            'biaya' => $request->biaya
+        ]);
+
+        return redirect('show-kurir/pengantaran');
+    }
+
+    public function showJasaPengerjaanIkan(){
+        $jasaPengerjaan = JasaPengerjaanIkan::all();
+        return view('kurir_management.show_pengerjaan_ikan', compact('jasaPengerjaan'));
+    }
+
+    public function storeJasaPengerjaanIkan(Request $request){
+        $request->validate([
+            'jenis_pengerjaan_ikan' => ['required'],
+            'biaya' => ['required']
+        ]);
+
+        JasaPengerjaanIkan::create([
+            'jenis_pengerjaan_ikan' => $request->jenis_pengerjaan_ikan,
+            'biaya' => $request->biaya
+        ]);
+
+        return redirect('show-kurir/jasa-pengerjaan');
+    }
+
 }
