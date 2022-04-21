@@ -19,9 +19,9 @@ $avatar = substr(Auth::user()->name, 0, 2);
     <meta name="keywords"
         content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>LMS SMAN 12</title>
+    <title>Dashboard Ruang Nelayan</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.html">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('app-assets/images/logo/logo.png') }}">
+    {{-- <link rel="shortcut icon" type="image/x-icon" href="{{ asset('app-assets/images/logo/logo.png') }}"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet">
 
@@ -102,7 +102,7 @@ $avatar = substr(Auth::user()->name, 0, 2);
                             class="dropdown-item" href=''><i class="me-50" data-feather="user"></i>
                             Profile</a>
                         <div class="dropdown-divider">
-                            <form action="" method="POST">
+                            <form action="{{route('logout')}}" method="POST">
                                 @csrf
                         </div><button type="submit" class="dropdown-item" href="page-account-settings.html">
                             <i class="me-50" data-feather="power"></i> Logout</a>
@@ -121,7 +121,7 @@ $avatar = substr(Auth::user()->name, 0, 2);
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item me-auto"><a class="navbar-brand" href="{{ route('home') }}"><span
                             class="brand-logo">
-                            <img src="{{ asset('app-assets/images/logo/logo.png') }}" alt="" srcset=""></span>
+                            {{-- <img src="{{ asset('app-assets/images/logo/logo.png') }}" alt="" srcset=""></span> --}}
                         <h2 class="brand-text">Ruang Nelayan</h2>
                     </a></li>
                 <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i

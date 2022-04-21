@@ -32,4 +32,10 @@ class LoginController extends Controller
             'email' => 'Email yang anda masukkan salah'
         ]);
     }
+
+    public function logout(){
+        Auth::logout();
+
+        return redirect('/');
+    }
 }
