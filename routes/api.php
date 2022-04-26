@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\HasilTangkapanController;
+use App\Http\Controllers\API\IkanAirLautController;
 use App\Http\Controllers\API\IkanAirTawarController;
 use App\Http\Controllers\API\JasaPengantaranController;
 use App\Http\Controllers\API\JenisIkanController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\UserController;
 use App\Models\HasilTangkapan;
+use App\Models\IkanAirLaut;
 use App\Models\IkanAirTawar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,13 +38,18 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('get-all',[UserController::class, 'getAll']);
     Route::post('user', [UserController::class, 'updateProfile']);
     Route::get('logout', [UserController::class, 'logout']);
+
     Route::get('hasil-tangkapan',[HasilTangkapanController::class, 'all']);
     Route::post('hasil-tangkapan/tambah-ikan',[HasilTangkapanController::class, 'tambahIkan']);
     Route::post('hasil-tangkapan/update-ikan',[HasilTangkapanController::class, 'updateIkan']);
+
     Route::get('jenis-ikan',[JenisIkanController::class, 'getAll']);
     Route::get('jenis-pengerjaan-ikan',[JenisPengerjaanIkanController::class, 'getAll']);
+
     Route::post('ikan-air-tawar/tambah', [IkanAirTawarController::class, 'create']);
     Route::get('ikan-air-tawar/lihat', [IkanAirTawarController::class, 'getAll']);
+
+    Route::get('ikan-air-laut/lihat', [IkanAirLautController::class, 'getAll']);
 
     Route::get('jasa-pengantaran', [JasaPengantaranController::class, 'getAll']);
 

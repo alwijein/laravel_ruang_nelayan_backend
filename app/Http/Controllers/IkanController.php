@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IkanAirLaut;
 use App\Models\IkanAirTawar;
 use App\Models\JenisIkan;
 use Illuminate\Http\Request;
@@ -44,6 +45,25 @@ class IkanController extends Controller
         ]);
 
         return redirect('show-ikan/air-tawar');
+    }
+
+    public function showIkanAirLaut(){
+        $ikanAirLaut = IkanAirLaut::all();
+        return view('ikan_management.show_ikan_air_laut', compact('ikanAirLaut'));
+    }
+
+    public function storeIkanAirLaut(Request $request){
+        $request->validate([
+            'title' => ['required'],
+            // 'keterangan' => ['required']
+        ]);
+
+        IkanAirLaut::create([
+            'title' => $request->title,
+            // 'keterangan' => $request->keterangan
+        ]);
+
+        return redirect('show-ikan/air-laut');
     }
 
 }

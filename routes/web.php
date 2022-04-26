@@ -47,6 +47,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/show-ikan/air-tawar',[IkanController::class, 'showIkanAirTawar'])->name('show-air-tawar');
     Route::post('/show-ikan/air-tawar',[IkanController::class, 'storeIkanAirTawar']);
 
+    Route::get('/show-ikan/air-laut',[IkanController::class, 'showIkanAirLaut'])->name('show-air-laut');
+    Route::post('/show-ikan/air-laut',[IkanController::class, 'storeIkanAirLaut']);
+
     Route::post('/logout',[LoginController::class, 'logout'])->name('logout');
 
 
