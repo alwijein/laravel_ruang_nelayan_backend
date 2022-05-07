@@ -111,8 +111,9 @@ class UserController extends Controller
             } else {
                 dd('Request Has No File');
             }
+            $user =Auth::user();
 
-            $user = User::where('id', Auth::user()->id)->update([
+            $user->update([
                 'name' => $request->name,
                 'no_hp' => $request->no_hp,
                 'alamat' => $request->alamat,

@@ -27,13 +27,15 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/show-nelayan/{id}/edit',[UserController::class, 'editNelayan'])->name('edit-nelayan');
     Route::put('/show-nelayan/{id}', [UserController::class, 'updateNelayan']);
 
+    Route::delete('/show-nelayan/{id}', [UserController::class, 'destroy'])->name('delete');
+
+
     Route::get('/show-costumer',[UserController::class, 'showCostumer'])->name('show-costumer');
     Route::post('/show-costumer', [UserController::class, 'storeCostumer']);
 
     Route::get('/show-costumer/{id}/edit',[UserController::class, 'editCostumer'])->name('edit-costumer');
     Route::put('/show-costumer/{id}', [UserController::class, 'updateCostumer']);
 
-    Route::delete('/show-siswa/{id}', [UserController::class, 'destroy'])->name('delete');
 
     Route::get('/show-kurir/pengantaran',[KurirController::class, 'showKurir'])->name('show-kurir');
     Route::post('/show-kurir/pengantaran',[KurirController::class, 'store'])->name('show-kurir');

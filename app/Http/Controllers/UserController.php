@@ -129,10 +129,10 @@ class UserController extends Controller
     public function destroy($id){
         $user = User::where('id', $id)->first();
         $user->delete();
-        if($user->role == "Guru"){
-            return redirect('show-guru');
+        if($user->role == "costumer"){
+            return redirect('show-costumer');
         }else{
-            return redirect('show-siswa');
+            return redirect('show-nelayan');
         }
     }
 
