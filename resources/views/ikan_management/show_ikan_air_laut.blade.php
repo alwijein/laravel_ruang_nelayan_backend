@@ -23,7 +23,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <form action="{{ route('show-air-ldaut') }}" method="POST">
+                                        <form action="{{ route('show-air-laut') }}" method="POST">
                                             @csrf
                                             <div class="modal-body">
                                                 <label>Nama Ikan: </label>
@@ -80,7 +80,7 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('edit-nelayan', ['id' => $data->id]) }}">
+                                                        href="{{ route('edit-laut', ['id' => $data->id]) }}">
                                                         <i data-feather="edit-2" class="me-50"></i>
                                                         <span>Edit</span>
                                                     </a>

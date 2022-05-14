@@ -9,37 +9,26 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Edit Akun Nelayan</h4>
+                        <h4 class="card-title">Edit Ikan Air Laut</h4>
                     </div>
                     <div class="card-body">
-                        <form class="form"  action="/show-ikan/jenis/{{$jenisIkan->id}}" method="post">
+                        <form class="form"  action="/show-ikan/air-laut/{{$data->id}}" method="post">
                             @csrf
                             @method('put')
                             <div class="row">
                                 <div class="col-md-6 col-12">
                                     <div class="mb-1">
-                                        <label class="form-label" for="first-name-column">Jenis Ikan</label>
+                                        <label class="form-label" for="first-name-column">Nama Ikan</label>
                                         <input type="text" id="first-name-column" class="form-control"
-                                            placeholder="Masukkan Nama Baru" value="{{$jenisIkan->jenis_ikan}}" name="jenisIkan" />
+                                            placeholder="Masukkan Nama Baru" value="{{$data->title}}" name="title" />
                                     </div>
-                                    @error('jenisIkan')
+                                    @error('title')
                                     <div class="text-danger mt-1">
                                         {{ $message }}
                                     </div>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="mb-1">
-                                        <label class="form-label" for="first-name-column">Keterangan</label>
-                                        <input type="number" id="first-name-column" class="form-control"
-                                            placeholder="Masukkan Nomor Telepon Baru" value="{{$jenisIkan->keterangan}}" name="keterangan" />
-                                    </div>
-                                    @error('keterangan')
-                                    <div class="text-danger mt-1">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
+
 
 
                                 <div class="col-12 text-center">

@@ -84,7 +84,7 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('edit-nelayan', ['id' => $data->id]) }}">
+                                                        href="{{ route('edit-pengerjaan', ['id' => $data->id]) }}">
                                                         <i data-feather="edit-2" class="me-50"></i>
                                                         <span>Edit</span>
                                                     </a>

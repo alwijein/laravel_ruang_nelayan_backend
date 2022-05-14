@@ -39,18 +39,34 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/show-kurir/pengantaran',[KurirController::class, 'showKurir'])->name('show-kurir');
     Route::post('/show-kurir/pengantaran',[KurirController::class, 'store'])->name('show-kurir');
+    Route::get('/show-kurir/{id}/edit',[KurirController::class, 'editKurir'])->name('edit-kurir');
+    Route::put('/show-kurir/{id}',[KurirController::class, 'updateKurir']);
 
     Route::get('/show-kurir/jasa-pengerjaan',[KurirController::class, 'showJasaPengerjaanIkan'])->name('show-jasa-pengerjaan');
     Route::post('/show-kurir/jasa-pengerjaan',[KurirController::class, 'storeJasaPengerjaanIkan'])->name('show-jasa-pengerjaan');
 
+    Route::get('/show-kurir/jasa-pengerjaan/{id}/edit',[KurirController::class, 'editPengerjaan'])->name('edit-pengerjaan');
+    Route::put('/show-kurir/jasa-pengerjaan/{id}',[KurirController::class, 'updatePengerjaan']);
+
+
     Route::get('/show-ikan/jenis',[IkanController::class, 'showJenisIkan'])->name('show-jenis-ikan');
     Route::post('/show-ikan/jenis',[IkanController::class, 'store'])->name('show-jenis-ikan');
+
+    Route::get('/show-ikan/jenis/{id}/edit',[IkanController::class, 'editJenis'])->name('edit-jenis');
+    Route::put('/show-ikan/jenis/{id}',[IkanController::class, 'updateJenis']);
 
     Route::get('/show-ikan/air-tawar',[IkanController::class, 'showIkanAirTawar'])->name('show-air-tawar');
     Route::post('/show-ikan/air-tawar',[IkanController::class, 'storeIkanAirTawar']);
 
+    Route::get('/show-ikan/air-tawar/{id}/edit',[IkanController::class, 'editTawar'])->name('edit-tawar');
+    Route::put('/show-ikan/air-tawar/{id}',[IkanController::class, 'updateTawar']);
+
     Route::get('/show-ikan/air-laut',[IkanController::class, 'showIkanAirLaut'])->name('show-air-laut');
     Route::post('/show-ikan/air-laut',[IkanController::class, 'storeIkanAirLaut']);
+
+    Route::get('/show-ikan/air-laut/{id}/edit',[IkanController::class, 'editLaut'])->name('edit-laut');
+    Route::put('/show-ikan/air-laut/{id}',[IkanController::class, 'updateLaut']);
+
 
     Route::post('/logout',[LoginController::class, 'logout'])->name('logout');
 
