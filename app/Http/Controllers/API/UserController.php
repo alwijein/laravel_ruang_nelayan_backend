@@ -95,38 +95,38 @@ class UserController extends Controller
 
     public function updateProfile(Request $request)
     {
-        // try {
+        try {
             $request->validate([
                 'name' => ['required'],
                 'no_hp' => ['required', 'string', 'max:255', 'unique:users,no_hp,' . $request->user()->id],
                 'alamat' => ['string'],
             ]);
 
-            if ($request->hasFile('avatar')) {
-                $image = $request->file('avatar');
+            // if ($request->hasFile('avatar')) {
+            //     $image = $request->file('avatar');
 
-                $image_name = time() . '.' . $image->getClientOriginalExtension();
-                // $destinationPath = base_path('images/users');
-                $image->storeAs("images/profile", $image_name);
-            } else {
-                dd('Request Has No File');
-            }
+            //     $image_name = time() . '.' . $image->getClientOriginalExtension();
+            //     // $destinationPath = base_path('images/users');
+            //     $image->storeAs("images/profile", $image_name);
+            // } else {
+            //     dd('Request Has No File');
+            // }
             $user =Auth::user();
 
             $user->update([
                 'name' => $request->name,
                 'no_hp' => $request->no_hp,
                 'alamat' => $request->alamat,
-                'avatar' => $image_name,
+                'avatar' => $request->avatar,
             ]);
 
             return ResponseFormatter::success($user, 'Profil Updated');
-        // } catch (Exception $error) {
-        //     return ResponseFormatter::error([
-        //         'massage' => 'Something went wrong',
-        //         'error' => $error,
-        //     ], 'Updated Failed', 500);
-        // }
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'massage' => 'Something went wrong',
+                'error' => $error,
+            ], 'Updated Failed', 500);
+        }
     }
 
     public function logout(Request $request)
