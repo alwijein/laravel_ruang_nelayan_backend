@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\DetailTransaction;
+use App\Models\HasilTangkapan;
 use App\Models\Transaction;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class TransactionController extends Controller
             }
         }
 
-        $transaction = Transaction::with(['items.hasilTangkapan', 'user'])->where('id_users', Auth::user()->id)->orWhere('id_nelayan', Auth::user()->id);
+        $transaction = Transaction::with(['items.hasilTangkapan', 'user', 'jasaPengantaran'])->where('id_users', Auth::user()->id)->orWhere('id_nelayan', Auth::user()->id);
 
         if($status){
             $transaction->where('status', $status);
@@ -85,11 +86,19 @@ class TransactionController extends Controller
 
     public function confirmStatus(Request $request){
         $id = $request->input('id');
+        $qty = $request->input('qty');
+        $idHasilTangkapan = $request->input('idHasilTangkapan');
 
         try {
 
-            $transaction = Transaction::where('id', $id)->update([
-                'status' => 'SUDAH DI KONFIRMASI',
+            if($id){
+                $transaction = Transaction::where('id', $id)->update([
+                    'status' => 'SUDAH DI KONFIRMASI',
+                ]);
+            }
+
+            $hasilTangkapan = HasilTangkapan::where('id', $idHasilTangkapan)->update([
+                'jumlah' => $request->qty,
             ]);
 
 
