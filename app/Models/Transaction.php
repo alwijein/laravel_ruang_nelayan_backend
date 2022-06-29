@@ -12,7 +12,7 @@ class Transaction extends Model
     protected $fillable = [
         'id_users',
         'id_nelayan',
-        'id_jasa_pengantaran',
+        'tipe_pengantaran',
         'alamat',
         'pembayaran',
         'total_pembayaran',
@@ -31,9 +31,6 @@ class Transaction extends Model
         return $this->hasMany(DetailTransaction::class, 'id_transactions', 'id');
     }
 
-    public function jasaPengantaran(){
-        return $this->belongsTo(JasaPengantaran::class, 'id_jasa_pengantaran', 'id');
-    }
 
     public function laporanHarian(){
         return $this->hasMany(LaporanHarian::class);

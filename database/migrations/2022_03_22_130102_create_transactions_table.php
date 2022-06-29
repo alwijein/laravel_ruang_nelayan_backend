@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
 
             $table->foreignId('id_users')->nullable();
-            $table->foreignId('id_jasa_pengantaran')->nullable();
+            $table->string('tipe_pengantaran');
 
             $table->string('alamat')->nullable();
             $table->string('pembayaran')->default('MANUAL');
@@ -31,7 +31,6 @@ class CreateTransactionsTable extends Migration
 
         Schema::table('transactions', function($table) {
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_jasa_pengantaran')->references('id')->on('jasa_pengantaran')->onDelete('cascade');
         });
     }
 

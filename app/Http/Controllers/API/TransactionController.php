@@ -31,7 +31,7 @@ class TransactionController extends Controller
             }
         }
 
-        $transaction = Transaction::with(['items.hasilTangkapan', 'user', 'jasaPengantaran'])->where('id_users', Auth::user()->id)->orWhere('id_nelayan', Auth::user()->id);
+        $transaction = Transaction::with(['items.hasilTangkapan', 'user'])->where('id_users', Auth::user()->id)->orWhere('id_nelayan', Auth::user()->id);
 
         if($status){
             $transaction->where('status', $status);
@@ -54,7 +54,7 @@ class TransactionController extends Controller
             'ongkos_kirim' => ['required'],
             'total_jasa' => ['required'],
             'status' => ['required'],
-            'id_jasa_pengantaran' => ['required'],
+            'tipe_pengantaran' => ['required'],
             'pembayaran' => ['required'],
         ]);
 
@@ -67,7 +67,7 @@ class TransactionController extends Controller
             'ongkos_kirim' => $request->ongkos_kirim,
             'total_jasa' => $request->total_jasa,
             'status' => $request->status,
-            'id_jasa_pengantaran' => $request->id_jasa_pengantaran,
+            'tipe_pengantaran' => $request->tipe_pengantaran,
             'pembayaran' => $request->pembayaran,
         ]);
 

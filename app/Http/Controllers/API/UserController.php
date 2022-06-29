@@ -33,6 +33,7 @@ class UserController extends Controller
                 'no_hp' => $request->no_hp,
                 'nik_ktp' => $request->nik_ktp,
                 'role' => $request->role,
+                'avatar' => $request->avatar,
                 'password' => Hash::make($request->password),
             ]);
 
