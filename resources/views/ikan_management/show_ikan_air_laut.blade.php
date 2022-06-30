@@ -23,7 +23,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <form action="{{ route('show-air-laut') }}" method="POST">
+                                        <form action="{{ route('show-air-laut') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="modal-body">
                                                 <label>Nama Ikan: </label>
@@ -36,19 +36,17 @@
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
-                                            </div>
-                                            {{-- <div class="modal-body">
-                                                <label>Keterangan: </label>
-                                                <div class="mb-1">
-                                                    <input type="text" name="keterangan" placeholder="Masukkan Keterangan"
-                                                        class="form-control" />
+                                                <div class="col-lg-12 col-md-12 mb-1 mb-sm-0">
+                                                    <label for="formFile" class="form-label">Upload Gambar Ikan</label>
+                                                    <input class="form-control" type="file" id="formFile" name="img">
                                                 </div>
-                                                @error('keterangan')
+                                                @error('img')
                                                     <div class="text-danger mt-1">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
-                                            </div> --}}
+                                            </div>
+
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">Daftar</button>
                                             </div>
@@ -62,16 +60,18 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th>Gambar</th>
                                     <th>Nama Ikan</th>
-                                    {{-- <th>Keterangan</th> --}}
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($ikanAirLaut as $data)
                                     <tr>
+                                        <td>
+                                            <img src="{{asset($data->takeImage())}}" class="me-75" alt="Ikan" width="20%">
+                                        </td>
                                         <td>{{ $data->title }}</td>
-                                        {{-- <td>{{ $data->keterangan }}</td> --}}
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn btn-sm dropdown-toggle hide-arrow"

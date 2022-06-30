@@ -15,4 +15,8 @@ class IkanAirLaut extends Model
         'img',
         'title',
     ];
+
+    public function takeImage(){
+        return "storage/" . $this->img;
+    }
 }

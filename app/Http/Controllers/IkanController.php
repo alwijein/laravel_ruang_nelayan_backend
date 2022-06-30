@@ -56,12 +56,18 @@ class IkanController extends Controller
     public function storeIkanAirTawar(Request $request){
         $request->validate([
             'title' => ['required'],
-            // 'keterangan' => ['required']
+            'img' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
+
+
+        // Assign Image
+        $thumbnail = request()->file('img');
+        $name = date('YmdHi')."-".$thumbnail->getClientOriginalName();
+        $thumbnailUrl = $thumbnail->storeAs("images/ikan",$name);
 
         IkanAirTawar::create([
             'title' => $request->title,
-            // 'keterangan' => $request->keterangan
+            'img' => $thumbnailUrl,
         ]);
 
         return redirect('show-ikan/air-tawar');
@@ -92,12 +98,18 @@ class IkanController extends Controller
     public function storeIkanAirLaut(Request $request){
         $request->validate([
             'title' => ['required'],
-            // 'keterangan' => ['required']
+            'img' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
+
+
+        // Assign Image
+        $thumbnail = request()->file('img');
+        $name = date('YmdHi')."-".$thumbnail->getClientOriginalName();
+        $thumbnailUrl = $thumbnail->storeAs("images/ikan",$name);
 
         IkanAirLaut::create([
             'title' => $request->title,
-            // 'keterangan' => $request->keterangan
+            'img' => $thumbnailUrl,
         ]);
 
         return redirect('show-ikan/air-laut');
