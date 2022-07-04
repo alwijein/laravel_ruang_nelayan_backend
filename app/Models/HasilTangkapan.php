@@ -13,7 +13,6 @@ class HasilTangkapan extends Model
 
     protected $fillable = [
         'id_users',
-        'id_jasa_pengerjaan_ikan',
         'id_jenis_ikan',
         'nama_ikan',
         'jumlah',
@@ -31,12 +30,12 @@ class HasilTangkapan extends Model
         return $this->belongsTo(JenisIkan::class, 'id_jenis_ikan');
     }
 
-    public function jasaPengerjaanIkan(){
-        return $this->belongsTo(JasaPengerjaanIkan::class, 'id_jasa_pengerjaan_ikan');
-    }
-
     public function laporanHarian(){
         return $this->hasMany(LaporanHarian::class);
+    }
+
+    public function jenisPengerjaanIkan(){
+        return $this->hasMany(TangkapanHasPengerjaan::class, 'id_hasil_tangkapan', 'id');
     }
 
 }

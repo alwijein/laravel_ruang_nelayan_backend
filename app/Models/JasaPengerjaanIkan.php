@@ -21,7 +21,7 @@ class JasaPengerjaanIkan extends Model
         return $this->hasMany(Rincian::class);
     }
 
-    public function hasilTangkapan(){
-        return $this->hasMany(HasilTangkapan::class);
+    public function jenisPengerjaanIkan(){
+        return $this->hasMany(TangkapanHasPengerjaan::class, 'id_jasa_pegerjaan_ikan', 'id');
     }
 }
