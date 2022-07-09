@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\IkanAirLaut;
 use App\Models\IkanAirTawar;
+use App\Models\JasaPengerjaanIkan;
 use App\Models\JenisIkan;
 use Illuminate\Http\Request;
 
@@ -131,6 +132,34 @@ class IkanController extends Controller
         ]);
 
         return redirect('show-ikan/air-laut');
+    }
+
+    public function destroyJasa($id){
+        $pengerjaanIkan = JasaPengerjaanIkan::where('id', $id)->first();
+        $pengerjaanIkan->delete();
+
+        return redirect(route('show-jasa-pengerjaan'));
+    }
+
+    public function destroyJenis($id){
+        $data = JenisIkan::where('id', $id)->first();
+        $data->delete();
+
+        return redirect(route('show-jenis-ikan'));
+    }
+
+    public function destroyLaut($id){
+        $data = IkanAirLaut::where('id', $id)->first();
+        $data->delete();
+
+        return redirect(route('show-air-laut'));
+    }
+
+    public function destroyTawar($id){
+        $data = IkanAirTawar::where('id', $id)->first();
+        $data->delete();
+
+        return redirect(route('show-air-tawar'));
     }
 
 }

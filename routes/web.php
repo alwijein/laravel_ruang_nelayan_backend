@@ -42,11 +42,14 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/show-kurir/{id}/edit',[KurirController::class, 'editKurir'])->name('edit-kurir');
     Route::put('/show-kurir/{id}',[KurirController::class, 'updateKurir']);
 
+
     Route::get('/show-kurir/jasa-pengerjaan',[KurirController::class, 'showJasaPengerjaanIkan'])->name('show-jasa-pengerjaan');
     Route::post('/show-kurir/jasa-pengerjaan',[KurirController::class, 'storeJasaPengerjaanIkan'])->name('show-jasa-pengerjaan');
 
     Route::get('/show-kurir/jasa-pengerjaan/{id}/edit',[KurirController::class, 'editPengerjaan'])->name('edit-pengerjaan');
     Route::put('/show-kurir/jasa-pengerjaan/{id}',[KurirController::class, 'updatePengerjaan']);
+
+    Route::delete('/show-kurir/jasa-pengerjaan/{id}', [IkanController::class, 'destroyJasa'])->name('delete-pengerjaan');
 
 
     Route::get('/show-ikan/jenis',[IkanController::class, 'showJenisIkan'])->name('show-jenis-ikan');
@@ -55,17 +58,24 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/show-ikan/jenis/{id}/edit',[IkanController::class, 'editJenis'])->name('edit-jenis');
     Route::put('/show-ikan/jenis/{id}',[IkanController::class, 'updateJenis']);
 
+    Route::delete('/show-ikan/jenis/{id}', [IkanController::class, 'destroyJenis'])->name('delete-jenis');
+
     Route::get('/show-ikan/air-tawar',[IkanController::class, 'showIkanAirTawar'])->name('show-air-tawar');
     Route::post('/show-ikan/air-tawar',[IkanController::class, 'storeIkanAirTawar']);
 
     Route::get('/show-ikan/air-tawar/{id}/edit',[IkanController::class, 'editTawar'])->name('edit-tawar');
     Route::put('/show-ikan/air-tawar/{id}',[IkanController::class, 'updateTawar']);
 
+    Route::delete('/show-ikan/air-tawar/{id}', [IkanController::class, 'destroyTawar'])->name('delete-air-tawar');
+
+
     Route::get('/show-ikan/air-laut',[IkanController::class, 'showIkanAirLaut'])->name('show-air-laut');
     Route::post('/show-ikan/air-laut',[IkanController::class, 'storeIkanAirLaut']);
 
     Route::get('/show-ikan/air-laut/{id}/edit',[IkanController::class, 'editLaut'])->name('edit-laut');
     Route::put('/show-ikan/air-laut/{id}',[IkanController::class, 'updateLaut']);
+
+    Route::delete('/show-ikan/air-laut/{id}', [IkanController::class, 'destroyLaut'])->name('delete-air-laut');
 
 
     Route::post('/logout',[LoginController::class, 'logout'])->name('logout');

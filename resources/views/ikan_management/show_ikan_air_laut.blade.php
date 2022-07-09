@@ -84,14 +84,14 @@
                                                         <i data-feather="edit-2" class="me-50"></i>
                                                         <span>Edit</span>
                                                     </a>
-                                                    {{-- <form action="{{ route('delete', ['id'=>$data->id]) }}" method="POST">
+                                                    <form action="{{ route('delete-air-laut', ['id'=>$data->id]) }}" method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button class="dropdown-item" type="submit">
                                                             <i data-feather="trash" class="me-50"></i>
                                                             <span>Delete</span>
                                                         </button>
-                                                    </form> --}}
+                                                    </form>
                                                 </div>
                                             </div>
                                         </td>

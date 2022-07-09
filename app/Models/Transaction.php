@@ -17,6 +17,7 @@ class Transaction extends Model
         'pembayaran',
         'total_pembayaran',
         'ongkos_kirim',
+        'nama_jasa',
         'total_jasa',
         'status'
     ];

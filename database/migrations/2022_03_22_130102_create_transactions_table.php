@@ -23,6 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->string('pembayaran')->default('MANUAL');
             $table->float('total_pembayaran')->default(0);
             $table->float('ongkos_kirim')->default(0);
+            $table->string('nama_jasa')->nullable();
             $table->float('total_jasa')->default(0);
 
             $table->string('status')->default('MENUNGGU KONFIRMASI');

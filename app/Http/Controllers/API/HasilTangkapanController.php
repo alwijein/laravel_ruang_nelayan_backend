@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\HasilTangkapan;
-use App\Models\JasaPengerjaanIkan;
 use App\Models\TangkapanHasPengerjaan;
 use Illuminate\Http\Request;
 
@@ -34,7 +33,7 @@ class HasilTangkapanController extends Controller
             }
         }
 
-        $hasilTangkapan = HasilTangkapan::with(['users', 'jenisIkan'])->where('jumlah', '!=' , 0);
+        $hasilTangkapan = HasilTangkapan::with(['users', 'jenisIkan', 'jenisPengerjaanIkan.jasaPengerjaanIkan'])->where('jumlah', '!=' , 0);
 
 
         if ($id_users){
@@ -48,11 +47,11 @@ class HasilTangkapanController extends Controller
         if($created_at){
             $hasilTangkapan->whereDate('created_at', $created_at);
         }
-        // dd($hasilTangkapan->first()['id']);
-         $jasaPengerjaan = JasaPengerjaanIkan::where('id_hasil_tangkapan', $hasilTangkapan->first()['id'])->first();
+        // // dd($hasilTangkapan->first()['id']);
+        //  $jasaPengerjaan = JasaPengerjaanIkan::where('id_hasil_tangkapan', $hasilTangkapan->first()['id'])->first();
 
         return ResponseFormatter::success(
-            [$hasilTangkapan, $jasaPengerjaan],
+            $hasilTangkapan->paginate(6),
             'Data hasil tangkapan ikan berhasil diambil'
         );
     }
@@ -104,20 +103,31 @@ class HasilTangkapanController extends Controller
                 'jumlah' => ['required'],
                 'harga' => ['required'],
                 'gambar' => ['required'],
-                'id_jasa_pengerjaan_ikan' => ['required'],
+                'jenisPengerjaan' => ['required', 'array'],
+                'jenisPengerjaan.*.id' => ['exists:jasa_pengerjaan_ikan,id']
             ]);
 
 
-        $hasilTangkapan = HasilTangkapan::where('id', $id)->update([
+
+            $hasilTangkapan = HasilTangkapan::where('id', $id)->update([
             'id_users' => $request->id_users,
             'nama_ikan' => $request->nama_ikan,
             'id_jenis_ikan' => $request->id_jenis_ikan,
             'jumlah' => $request->jumlah,
             'harga' => $request->harga,
             'gambar' => $request->gambar,
-            'id_jasa_pengerjaan_ikan' => $request->id_jasa_pengerjaan_ikan,
         ]);
 
+        if(TangkapanHasPengerjaan::where('id_hasil_tangkapan', $id)->exists()){
+            TangkapanHasPengerjaan::where('id_hasil_tangkapan', $id)->delete();
+        }
+
+        foreach($request->jenisPengerjaan as $data){
+            TangkapanHasPengerjaan::create([
+                'id_jasa_pengerjaan_ikan' => $data,
+                'id_hasil_tangkapan' => $id,
+            ]);
+        }
         return ResponseFormatter::success($hasilTangkapan, 'Data berhasil di update');
         } catch (\Exception $error) {
             return ResponseFormatter::error(['message' => 'something went wrong' , 'error' => $error], "Data gagal ditambahkan", '500');

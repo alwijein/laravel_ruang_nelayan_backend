@@ -65,6 +65,7 @@ class TransactionController extends Controller
             'alamat' => $request->alamat,
             'total_pembayaran' => $request->total_pembayaran,
             'ongkos_kirim' => $request->ongkos_kirim,
+            'nama_jasa' => $request->nama_jasa,
             'total_jasa' => $request->total_jasa,
             'status' => $request->status,
             'tipe_pengantaran' => $request->tipe_pengantaran,

@@ -15,4 +15,12 @@ class TangkapanHasPengerjaan extends Model
         'id_jasa_pengerjaan_ikan',
         'id_hasil_tangkapan',
     ];
+
+    public function hasilTangkapan(){
+        return $this->hasOne(HasilTangkapan::class, 'id', 'id_hasil_tangkapan');
+    }
+
+    public function jasaPengerjaanIkan(){
+        return $this->hasOne(JasaPengerjaanIkan::class, 'id', 'id_jasa_pengerjaan_ikan');
+    }
 }

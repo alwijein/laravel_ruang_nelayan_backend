@@ -62,7 +62,6 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Image</th>
                                     <th>Jasa Pengerjaan Ikan</th>
                                     <th>Biaya</th>
                                     <th>Actions</th>
@@ -71,7 +70,6 @@
                             <tbody>
                                 @foreach ($jasaPengerjaan as $data)
                                     <tr>
-                                        <td>{{ $data->img }}</td>
                                         <td>{{ $data->jenis_pengerjaan_ikan }}</td>
                                         <td><span
                                                 class="badge rounded-pill badge-light-primary me-1">{{ $data->biaya }}</span>
@@ -88,14 +86,14 @@
                                                         <i data-feather="edit-2" class="me-50"></i>
                                                         <span>Edit</span>
                                                     </a>
-                                                    {{-- <form action="{{ route('delete', ['id'=>$data->id]) }}" method="POST">
+                                                    <form action="{{ route('delete-pengerjaan', ['id'=>$data->id]) }}" method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button class="dropdown-item" type="submit">
                                                             <i data-feather="trash" class="me-50"></i>
                                                             <span>Delete</span>
                                                         </button>
-                                                    </form> --}}
+                                                    </form>
                                                 </div>
                                             </div>
                                         </td>
